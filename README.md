@@ -6,7 +6,7 @@ A professional-grade, web-based PDF viewer integrated with the Google Drive API.
 
 ---
 
-## 🧐 Bagaimana Cara Kerja Logika Penyimpanannya?
+## Cara Kerja Logika Penyimpanannya
 
 Salah satu fitur unggulan dari aplikasi ini adalah kemampuannya untuk **mengingat halaman terakhir** yang Anda baca. Berikut adalah penjelasan teknis di balik layar:
 
