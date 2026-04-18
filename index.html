@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drive Viewer - Professional PDF Preview</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Top Bar (Google Drive Style) -->
+    <header class="drive-header">
+        <div class="header-left">
+            <button id="sidebar-toggle" class="icon-btn" data-tooltip="Riwayat">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <div class="file-info">
+                <span id="file-name">Loading...</span>
+            </div>
+        </div>
+
+        <div class="header-center">
+            <div class="pagination-controls">
+                <button id="prev-btn" class="icon-btn" data-tooltip="Halaman Sebelumnya">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <div class="page-count">
+                    <input type="number" id="current-page-input" value="1" min="1">
+                    <span>/</span>
+                    <span id="total-pages">0</span>
+                </div>
+                <button id="next-btn" class="icon-btn" data-tooltip="Halaman Berikutnya">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="zoom-controls">
+                <button id="zoom-out" class="icon-btn" data-tooltip="Perkecil">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                </button>
+                <span id="zoom-level">100%</span>
+                <button id="zoom-in" class="icon-btn" data-tooltip="Perbesar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                </button>
+            </div>
+            <div class="action-divider"></div>
+            <button id="download-btn" class="icon-btn" data-tooltip="Download">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Sidebar Recent (Google Drive Style) -->
+    <aside id="sidebar-recent" class="sidebar">
+        <div class="sidebar-header">
+            <h3>Recent Documents</h3>
+        </div>
+        <div id="recent-list" class="recent-list">
+            <!-- Dynamic History Items -->
+        </div>
+        <div class="sidebar-footer">
+            <input type="text" id="manual-url" placeholder="Paste Drive link here...">
+            <button id="load-url-btn">Load New</button>
+        </div>
+    </aside>
+
+    <!-- Main Viewer Area -->
+    <main id="drive-viewport">
+        <div id="pdf-wrapper">
+            <div id="pdf-container">
+                <canvas id="pdf-canvas"></canvas>
+            </div>
+            
+            <!-- Skeleton Loader -->
+            <div id="skeleton" class="hidden">
+                <div class="skeleton-page"></div>
+            </div>
+
+            <!-- Error Boundary -->
+            <div id="error-box" class="hidden">
+                <div class="error-icon">!</div>
+                <h4 id="error-title">Gagal Memuat</h4>
+                <p id="error-desc">File tidak ditemukan atau akses ditolak.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Global Loading Overlay -->
+    <div id="global-loading" class="hidden">
+        <div class="loader-circle"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
